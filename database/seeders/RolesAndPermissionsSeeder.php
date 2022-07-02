@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Utils\PermissionConstants;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -65,5 +66,15 @@ class RolesAndPermissionsSeeder extends Seeder
         // Give all Permission to superadmin;
         $role = Role::create(['name'=> 'super-admin']);
         $role->givePermissionTo(Permission::all());
+
+        $this->assignRoles();
+
+
+    }
+
+    public function assignRoles(){
+        $superadmin = User::find(1);
+        $superadmin->assignRole('super-admin');
+
     }
 }
