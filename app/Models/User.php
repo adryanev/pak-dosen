@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'bio', 'role'
+        'name', 'email', 'password', 'avatar', 'bio', 'role',
     ];
 
     /**
@@ -63,6 +63,23 @@ class User extends Authenticatable
             'password' => 'required|confirmed|min:6',
         ]);
     }
+
+     /*
+    |------------------------------------------------------------------------------------
+    | Relations
+    |------------------------------------------------------------------------------------
+    */
+
+    /**
+     * Get the user that owns the profile
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
 
     /*
     |------------------------------------------------------------------------------------
