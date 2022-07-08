@@ -16,7 +16,7 @@ class Bukti extends Model
     | Validations
     |------------------------------------------------------------------------------------
     */
-    public static function rules($update = false, $id=null)
+    public static function rules($update = false, $id = null)
     {
         return [
             'name' => 'required',
@@ -28,6 +28,16 @@ class Bukti extends Model
     | Relations
     |------------------------------------------------------------------------------------
     */
+
+    /**
+     * Kriteria kegiatan yang memiliki bukti ini.
+     */
+    public function kriteriaKegiatans()
+    {
+        return $this->belongsToMany(KriteriaKegiatans::class)
+        ->using(KriteriaKegiatansBuktis::class)
+        ->withTimestamps();
+    }
 
     /*
     |------------------------------------------------------------------------------------

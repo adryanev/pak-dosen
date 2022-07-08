@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('buktis', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->string('tipe');
-            $table->string('allowed_extensions');
-            $table->softDeletes();
-
-
+        Schema::create('kriteria_kegiatans_buktis', function (Blueprint $table) {
+            $table->foreignId('kriteria_kegiatans_id')->constrained();
+            $table->foreignId('buktis_id')->constrained();
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buktis');
+        Schema::dropIfExists('kriteria_kegiatans_bukti');
     }
 };

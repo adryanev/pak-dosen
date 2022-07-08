@@ -18,4 +18,15 @@ class KriteriaKegiatan extends Entity
      * @var \App\KriteriaKegiatanClosure
      */
     protected $closure = 'App\KriteriaKegiatanClosure';
+
+    /**
+     * Bukti dari setiap kegiatan
+     */
+    public function bukti()
+    {
+        return $this->belongsToMany(Bukti::class)
+        ->using(KriteriaKegiatansBuktis::class)
+        ->withTimestamps();
+        ;
+    }
 }
